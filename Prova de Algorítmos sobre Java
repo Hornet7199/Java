@@ -1,0 +1,196 @@
+//Prova feita por mim
+//Sinta-se a vontade de executar os códigos separadamente.
+//Exercício 1
+ 
+package prova_java;
+ 
+import javax.swing.JOptionPane;
+ 
+public class Exercicio1 {
+ 
+public static void main(String[] args) {
+int dias = Integer.parseInt(JOptionPane.showInputDialog(null, "Quantos dias de aula houveram?"));
+int presenca = Integer.parseInt(JOptionPane.showInputDialog("Quantos dias foram presenciados?"));
+double frequencia = ((presenca * 100)/dias);
+double media = 0;
+double soma = 0;
+ 
+for(int i = 0 ; i < 3; i++) {
+double nota = Double.parseDouble(JOptionPane.showInputDialog("Nota de n°" + i));
+soma = soma += nota;
+ 
+}
+media = soma / 3;
+if(frequencia >= 75) {
+if(media >= 6.0) {
+JOptionPane.showMessageDialog(null, "Você passou com média de "+ media);
+}else {
+JOptionPane.showMessageDialog(null, "Reprovado por nota. ("+media+")");
+}
+}else {
+JOptionPane.showMessageDialog(null, "Reprovado por frequência. ("+frequencia+"%)");
+}
+}
+ 
+}
+//___________________________________________________________________
+//Exercício 2
+ 
+package prova_java;
+ 
+import javax.swing.JOptionPane;
+ 
+public class Exercicio2 {
+ 
+public static void main(String[] args) {
+int andar = Integer.parseInt(JOptionPane.showInputDialog("Qual andar deseja ir?\n1 - Garagem\n2 - Praça de alimentação"
++ "\n3 - Parque\n4 - Lojas 1\n5 - Lojas 2"));
+String texto = "";
+switch (andar) {
+case 1:
+texto = ("Onde estacionamos os carros.");
+break;
+case 2:
+texto = ("Onde vendemos comidas.");
+break;
+case 3:
+texto = ("Um pequeno parque para ambientação.");
+break;
+case 4:
+texto = ("Primeiro andar com lojas diversas.");
+break;
+case 5:
+texto = ("Segundo andar com lojas diversas.");
+break;
+default:
+texto = ("Erro! Andar inexistente.");
+break;
+ 
+}
+JOptionPane.showMessageDialog(null, texto);
+ 
+}
+ 
+}
+//__________________________________________________________________
+//Exercício 3
+ 
+package prova_java;
+ 
+import javax.swing.JOptionPane;
+ 
+public class Exercicio3 {
+ 
+public static void main(String[] args) {
+char tipo = 0;
+int somaA = 0;
+int somaB = 0;
+int somaC = 0;
+int total = 0;
+int porcA = 0;
+int porcB = 0;
+int porcC = 0;
+ 
+ 
+while(tipo != 'D') {
+tipo = (JOptionPane.showInputDialog("Escolha uma categoria de filmes, onde...\nA - Romance\nB = Drama\nC - Terror\nD - Sair")).toUpperCase().charAt(0);
+ 
+ 
+switch(tipo) {
+case'A':
+somaA += 1;
+break;
+case 'B':
+somaB += 1;
+break;
+case 'C':
+somaC += 1;
+break;
+case 'D':
+JOptionPane.showMessageDialog(null, "Adeus!");
+break;
+default:
+JOptionPane.showMessageDialog(null, "Tipo Inválido!");
+break;
+}
+total = somaA + somaB + somaC;
+porcA = ((somaA * 100)/total);
+porcB = ((somaB * 100)/total);
+porcC = ((somaC * 100)/total);
+}
+ 
+JOptionPane.showMessageDialog(null, "Total de cada tipo...\nRomance(A) = "+somaA+"("+porcA+"%)\nDrama(B) = "+somaB+"("+porcB+"%)\nTerror(C) = "+somaC+"("+porcC+"%)");
+ 
+}
+ 
+}
+//____________________________________________________________________
+//Exercício 4
+ 
+package prova_java;
+ 
+import javax.swing.JOptionPane;
+ 
+public class Exercicio4 {
+ 
+public static void main(String[] args) {
+int n = Integer.parseInt(JOptionPane.showInputDialog("Número de pessoas"));
+int contagem = 0;
+double soma = 0;
+ 
+for(int i = 0; i < n; i++) {
+contagem += 1;
+double altura = Double.parseDouble(JOptionPane.showInputDialog("Altura em cm da pessoa de n°" + contagem));
+soma += altura;
+ 
+}
+JOptionPane.showMessageDialog(null, "Media das alturas: " + (soma / n) + "cm");
+}
+ 
+ 
+}
+//_____________________________________________________________________
+//Exercício 5
+ 
+package prova_java;
+ 
+import javax.swing.JOptionPane;
+ 
+public class Exercicio5 {
+ 
+public static void main(String[] args) {
+double saldo = Double.parseDouble(JOptionPane.showInputDialog("Seu saldo atual?"));
+int op = 0;
+double deposito = 0;
+double saque = 0;
+ 
+do {
+op = Integer.parseInt(JOptionPane.showInputDialog("O que deseja fazer?\n1 - Deposito\n2 - Saque\n3 - Sair\nSeu saldo atual: R$" + saldo));
+switch(op) {
+case 1:
+deposito = Double.parseDouble(JOptionPane.showInputDialog("Quantos deseja depositar?"));
+saldo += deposito;
+break;
+case 2:
+saque = Double.parseDouble(JOptionPane.showInputDialog("Quantos deseja sacar?"));
+if(saque > saldo){
+JOptionPane.showMessageDialog(null, "Erro, seu saldo atual não cobre o saque.");
+ 
+}else {
+saldo -= saque;
+}
+break;
+case 3:
+JOptionPane.showMessageDialog(null, "Adeus!");
+break;
+default:
+JOptionPane.showMessageDialog(null, "Erro, operação inválida.");
+break;
+}
+ 
+}while(op != 3);
+JOptionPane.showMessageDialog(null, "Seu saldo final: R$"+saldo);
+ 
+}
+ 
+}
