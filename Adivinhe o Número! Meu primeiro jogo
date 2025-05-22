@@ -1,0 +1,93 @@
+package MeusJoguinhos;
+
+import java.util.Random;
+
+import javax.swing.JOptionPane;
+
+public class AdivinheASenha {
+
+	public static void main(String[] args) {
+		char op = JOptionPane.showInputDialog(
+				"Deseja jogar um jogo de adivinhação de senhas?\nSeu objetivo é tentar adivinhar uma senha de 4 números com as dicas!\nSim ou Não?")
+				.charAt(0);
+		int resposta1 = 10;
+		int resposta2 = 10;
+		int resposta3 = 10;
+		int resposta4 = 10;
+		if (op == 'N' || op == 'n') {
+			JOptionPane.showMessageDialog(null, "Neste caso, adeus!");
+		} else if (op == 'S' || op == 's') {
+			int nr1 = sorteiaNumero1();
+			int nr2 = sorteiaNumero2();
+			int nr3 = sorteiaNumero3();
+			int nr4 = sorteiaNumero4();
+
+			while (resposta1 != nr1) {
+				resposta1 = Integer.parseInt(JOptionPane.showInputDialog("Qual o primeiro número?"));
+				if (resposta1 == nr1) {
+					JOptionPane.showMessageDialog(null, "Muito bem! Vamos ao próximo número!");
+				} else if (resposta1 < nr1) {
+					JOptionPane.showMessageDialog(null, "O número é maior que " + resposta1);
+				} else {
+					JOptionPane.showMessageDialog(null, "O número é menor que " + resposta1);
+				}
+			}
+			while (resposta2 != nr2) {
+				resposta2 = Integer.parseInt(JOptionPane.showInputDialog("Qual o segundo número?"));
+				if (resposta2 == nr2) {
+					JOptionPane.showMessageDialog(null, "Muito bem! Vamos ao próximo número!");
+				} else if (resposta2 < nr2) {
+					JOptionPane.showMessageDialog(null, "O número é maior que " + resposta2);
+				} else {
+					JOptionPane.showMessageDialog(null, "O número é menor que " + resposta2);
+				}
+			}
+			while (resposta3 != nr3) {
+				resposta3 = Integer.parseInt(JOptionPane.showInputDialog("Qual o tereiro número?"));
+				if (resposta3 == nr3) {
+					JOptionPane.showMessageDialog(null, "Muito bem! Vamos ao próximo número!");
+				} else if (resposta3 < nr3) {
+					JOptionPane.showMessageDialog(null, "O número é maior que " + resposta3);
+				} else {
+					JOptionPane.showMessageDialog(null, "O número é menor que " + resposta3);
+				}
+			}
+			while (resposta4 != nr4) {
+				resposta4 = Integer.parseInt(JOptionPane.showInputDialog("Qual o quarto número?"));
+				if (resposta4 == nr4) {
+					JOptionPane.showMessageDialog(null, "Muito bem!");
+				} else if (resposta4 < nr4) {
+					JOptionPane.showMessageDialog(null, "O número é maior que " + resposta4);
+				} else {
+					JOptionPane.showMessageDialog(null, "O número é menor que " + resposta4);
+				}
+			}
+			JOptionPane.showMessageDialog(null, "Parabéns, você acertou a senha!\nSenha: " + nr1 + nr2 + nr3 + nr4);
+
+		} else {
+			JOptionPane.showMessageDialog(null, "Sim ou não, por favor.");
+		}
+
+	}
+
+	public static int sorteiaNumero1() {
+		int sorteado = new Random().nextInt(0, 9);
+		return sorteado;
+	}
+
+	public static int sorteiaNumero2() {
+		int sorteado = new Random().nextInt(0, 9);
+		return sorteado;
+	}
+
+	public static int sorteiaNumero3() {
+		int sorteado = new Random().nextInt(0, 9);
+		return sorteado;
+	}
+
+	public static int sorteiaNumero4() {
+		int sorteado = new Random().nextInt(0, 9);
+		return sorteado;
+	}
+
+}
