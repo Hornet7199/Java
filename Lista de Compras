@@ -1,0 +1,149 @@
+//Este código foi um teste sobre programação orientada a objetos. Se deveria ser feito um código do qual, no mínimo, deveria ter uma lista de compras com menu, do qual teria 4 opções.
+//Cadastrar um item, Buscar por nome e listar quantia para comprar, Listar itens com mais de 10 unidades e Sair.
+
+//Classe para oreintação a objetos chamada "Compra":
+package tipos_compostos.exerciciocompras;
+
+public class Compra {
+	String nome;
+	String marca;
+	int quantia;
+	double valor;
+
+}
+//Código da atividade:
+package tipos_compostos.exerciciocompras;
+
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
+public class ListaCompras {
+	
+	static ArrayList<Compra> itens = new ArrayList<Compra>();
+
+	public static void main(String[] args) {
+		
+		int op = 0;
+		do {
+			op = menu();
+			if(op == 1) cadastraItem();
+			if(op == 2) buscaNome();
+			if(op == 3) buscaQuantia();
+			if(op == 4) buscaMarca();
+			if(op == 5) buscaValor();
+			if(op == 6) buscaValorMedio();
+			if(op == 7) exibeMsg("Tchau!");
+			
+		}while(op !=7);
+		
+
+	}
+	static void cadastraItem() {
+		Compra p = new Compra();
+		p.nome = lerStr("Nome do item");
+		p.marca = lerStr("Marca do item");
+		p.valor = lerDouble("Valor unitário");
+		p.quantia = lerInt("Quantidade de itens");
+		if(p.nome.trim().equals("") || p.marca.trim().equals("") || p.valor <= 0.00 || p.quantia <=0 ) {
+			JOptionPane.showMessageDialog(null, "Faltam informações");
+		}else {
+			itens.add(p);
+		}
+	}
+	
+	static void buscaMarca() {
+		String marcaBusca = lerStr("Qual marca?");
+		String m = "";
+		int atual = 0;
+		for(Compra p : itens) {
+			if(p.marca.equalsIgnoreCase(marcaBusca)) { 
+				m += p.nome+"\n"+p.marca+"\nR$"+p.valor+"\nQuantia: "+p.quantia+"\n- - - - - -\n";
+				atual++;
+			}
+		}
+		if(m == "") exibeMsg(marcaBusca+" Não encontrado");
+		else exibeMsg(m+"\nN° de itens listados: "+atual);
+	}
+	static void buscaQuantia() {
+		String m = "";
+		int atual = 0;
+		for(Compra p : itens) {
+			if(p.quantia > 10) { 
+				m += p.nome+"\n"+p.marca+"\nR$"+p.valor+"\nQuantia: "+p.quantia+"\n- - - - - -\n";
+				atual++;
+			}
+		}
+		if(m == "") exibeMsg("Nenhum item com mais de 10 unidades encontrado.");
+		else exibeMsg(m+"\nN° de itens listados: "+atual);
+	}
+	static void buscaNome() {
+		String nomeBusca = lerStr("Qual o nome do item?");
+		String m = "";
+		int atual = 0;
+		for(Compra p : itens) {
+			if(p.nome.equalsIgnoreCase(nomeBusca)) { 
+				m += p.nome+"\n"+p.marca+"\nR$"+p.valor+"\nQuantia: "+p.quantia+"\n- - - - - -\n";
+				atual++;
+			}
+		}
+		if(m == "") exibeMsg(nomeBusca+" Não foi encontrado");
+		else exibeMsg(m+"\nN° de itens listados: "+atual);
+	}
+	static void buscaValorMedio() {
+		double valorMedio = lerDouble("Qual valor aproximado deseja buscar?");
+		double aproximacao = lerDouble("Aproximação de quantos reais deseja?");
+		double min = valorMedio - aproximacao;
+		double max = valorMedio + aproximacao;
+		String m = "";
+		int atual = 0;
+		for(Compra p : itens) {
+			if(p.valor >= min && p.valor <= max) { 
+				m += p.nome+"\n"+p.marca+"\nR$"+p.valor+"\nQuantia: "+p.quantia+"\n- - - - - -\n";
+				atual++;
+			}
+		}
+		if(m == "") exibeMsg("Nehum valor de aproximadamente R$"+valorMedio+" foi encontrado");
+		else exibeMsg(m+"\nN° de itens listados: "+atual);
+	}
+	static void buscaValor() {
+		double min = lerDouble("Qual o valor minimo que deseja buscar?");
+		double max = lerDouble("Qual o valor máximo que deseja buscar?");
+		String m = "";
+		int atual = 0;
+		for(Compra p : itens) {
+			if(p.valor >= min && p.valor <= max) { 
+				m += p.nome+"\n"+p.marca+"\nR$"+p.valor+"\nQuantia: "+p.quantia+"\n- - - - - -\n";
+				atual++;
+			}
+		}
+		if(m == "") exibeMsg("Nehum valor entre R$"+min+" e R$"+max+" foi encontrado");
+		else exibeMsg(m+"\nN° de itens listados: "+atual);
+	}
+	
+	
+	static int menu() {
+		String m = "1 - Cadastrar item\n"
+				+ "2 - Buscar nome\n"
+				+ "3 - Buscar listar itens com mais de 10 unidades\n"
+				+ "4 - Buscar por marca\n"
+				+ "5 - Buscar por média de valor\n"
+				+ "6 - Buscar por valor aproximado\n"
+				+ "7 - Sair";
+		return lerInt(m);
+	}
+	static int lerInt(String msg) {
+		return Integer.parseInt(JOptionPane.showInputDialog(msg));
+	}
+	static double lerDouble(String msg) {
+		return Double.parseDouble(JOptionPane.showInputDialog(msg));
+	}
+	
+	static String lerStr(String msg) {
+		return JOptionPane.showInputDialog(msg);
+	}
+	static void exibeMsg(String msg) {
+		JOptionPane.showMessageDialog(null, msg);
+	}
+
+}
